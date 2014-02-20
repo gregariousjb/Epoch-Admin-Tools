@@ -3,11 +3,13 @@ _pathtoskins = "admintools\skins\";
 _pathtoweapon = "admintools\weaponkits\";
 _pathtoshields = "admintools\shields\";
 _pathtovehicles = "admintools\vehicles\";
+_pathtobuildings = "admintools\buildings\";
 _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
 _EXECscript2 = 'player execVM "'+_pathtoskins+'%1"';
 _EXECscript3 = 'player execVM "'+_pathtoweapon+'%1"';
 _EXECscript4 = 'player execVM "'+_pathtoshields+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
+_EXECscript6 = 'player execVM "'+_pathtobuildings+'%1"';
 if ((getPlayerUID player) in AllAdminList) then { // All Admins
 	if ((getPlayerUID player) in SuperAdminList) then { // Super Admins
 		adminmenu =
@@ -18,6 +20,7 @@ if ((getPlayerUID player) in AllAdminList) then { // All Admins
 				["Skin Change Menu >>", [3], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 				["Weapon Kits >>", [4], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 				["Temporary Vehicle Menu >>", [5], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
+				["Building Menu", [6], "#USER:BuildingMenu", -5, [["expression", ""]], "1", "1"],
 				["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]		
 		];};
@@ -362,5 +365,48 @@ VehicleMenu8 =
 		["F35", [4],  "", -5, [["expression", format[_EXECscript5,"F35.sqf"]]], "1", "1"],
 		["", [-1], "", -5, [["expression", ""]], "1", "0"],
 				["Exit", [13], "", -3, [["expression", ""]], "1", "1"]
+];
+BuildingMenu =
+[
+["",true],
+		["Wood Floor", [2], "", -5, [["expression", format[_EXECscript6,"ItemWoodFloor.sqf"]]], "1", "1"],
+		["Wood Floor 1/2", [3], "", -5, [["expression", format[_EXECscript6,"ItemWoodFloorHalf.sqf"]]], "1", "1"],
+		["Wood Floor 1/4", [4], "", -5, [["expression", format[_EXECscript6,"ItemWoodFloorQuarter.sqf"]]], "1", "1"],
+		["Wood Stairs", [5], "", -5, [["expression", format[_EXECscript6,"ItemWoodStairs.sqf"]]], "1", "1"],
+		["Wood Stairs /w supp", [6], "", -5, [["expression", format[_EXECscript6,"ItemWoodStairsSupport.sqf"]]], "1", "1"],
+		["Wood Ladder", [7], "", -5, [["expression", format[_EXECscript6,"ItemWoodLadder.sqf"]]], "1", "1"],
+		["Wood Wall", [8], "", -5, [["expression", format[_EXECscript6,"ItemWoodWall.sqf"]]], "1", "1"],
+		["Wood Wall 1/3", [9], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallThird.sqf"]]], "1", "1"],
+		["", [-1], "", -5, [["expression", ""]], "1", "0"],
+		["Next page", [12], "#USER:BuildingMenu2", -5, [["expression", ""]], "1", "1"],
+			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]
+];
+
+BuildingMenu2 =
+[
+		["",true],
+		["Wood Wall Door", [2], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallDoor.sqf"]]], "1", "1"],
+		["Wood Wall /w Door", [3], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWithDoor.sqf"]]], "1", "1"],
+		["Wood Wall /w Door Locked", [4], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWithDoorLocked.sqf"]]], "1", "1"],
+		["Wood Wall Window", [5], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWindow.sqf"]]], "1", "1"],
+		["Wood Stairs /w supp", [6], "", -5, [["expression", format[_EXECscript6,"ItemWoodStairsSupport.sqf"]]], "1", "1"],
+		["Wood Wall Large", [7], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallLg.sqf"]]], "1", "1"],
+		["Wood Wall Garage Door", [8], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallGarageDoor.sqf"]]], "1", "1"],
+		["Wood Wall Garage Door Locked", [9], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallGarageDoorLocked.sqf"]]], "1", "1"],
+		["", [-1], "", -5, [["expression", ""]], "1", "0"],
+		["Next page", [12], "#USER:BuildingMenu3", -5, [["expression", ""]], "1", "1"],
+			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]
+];
+
+BuildingMenu3 =
+[
+		["",true],
+		["Wood Wall Door Large", [2], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallDoorLg.sqf"]]], "1", "1"],
+		["Wood Wall /w Door Large", [3], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWithDoorLg.sqf"]]], "1", "1"],
+		["Wood Wall /w Door Large Locked", [4], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWithDoorLgLocked.sqf"]]], "1", "1"],
+		["Wood Wall Window Large", [5], "", -5, [["expression", format[_EXECscript6,"ItemWoodWallWindowLg.sqf"]]], "1", "1"],
+		["", [-1], "", -5, [["expression", ""]], "1", "0"],
+		["Next page", [12], "#USER:BuildingMenu4", -5, [["expression", ""]], "1", "1"],
+		["Exit", [13], "", -3, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:adminmenu";
