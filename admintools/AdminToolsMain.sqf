@@ -19,7 +19,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
+		["World Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
 	];
@@ -212,7 +212,14 @@ WTMenu=[
 	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],		
 	["Off",[],"",-5,[["expression",'3 setfog 0']],"1","1"],		
 	["Medium",[],"",-5,[["expression",'3 setfog 0.5']],"1","1"],		
-	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],		
+	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Terrain Level", [], "", -5, [["expression", ""]], "1", "0"],
+	["Extreme *More Lag*", [], "", -5, [["expression", "setTerrainGrid 3.125;"]], "1", "1"],  
+	["Very High", [], "", -5, [["expression", "setTerrainGrid 6.25;"]], "1", "1"],  
+	["High", [], "", -5, [["expression", "setTerrainGrid 12.52;"]], "1", "1"],  
+	["Normal", [], "", -5, [["expression", "setTerrainGrid 25;"]], "1", "1"],  
+	["Low *Less Lag*", [], "", -5, [["expression", "setTerrainGrid 50;"]], "1", "1"],  
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
