@@ -215,11 +215,11 @@ WTMenu=[
 	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 	["Set Terrain Level", [], "", -5, [["expression", ""]], "1", "0"],
-	["Extreme", [], "", -5, [["expression", "setTerrainGrid 1;"]], "1", "1"],  
-	["Very High", [], "", -5, [["expression", "setTerrainGrid 3.125;"]], "1", "1"],  
-	["High", [], "", -5, [["expression", "setTerrainGrid 6.25;"]], "1", "1"],  
-	["Normal", [], "", -5, [["expression", "setTerrainGrid 12.5;"]], "1", "1"],  
-	["Low", [], "", -5, [["expression", "setTerrainGrid 25;"]], "1", "1"],  
+	["Extreme *More Lag*", [], "", -5, [["expression", "setTerrainGrid 3.125;"]], "1", "1"],  
+	["Very High", [], "", -5, [["expression", "setTerrainGrid 6.25;"]], "1", "1"],  
+	["High", [], "", -5, [["expression", "setTerrainGrid 12.52;"]], "1", "1"],  
+	["Normal", [], "", -5, [["expression", "setTerrainGrid 25;"]], "1", "1"],  
+	["Low *Less Lag*", [], "", -5, [["expression", "setTerrainGrid 50;"]], "1", "1"],  
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
