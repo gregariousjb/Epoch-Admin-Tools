@@ -171,15 +171,13 @@ While {markPos} do
 		If (AddVehicleToMap) then 
 		{
 			vehList = allmissionobjects "LandVehicle" + allmissionobjects "Air" + allmissionobjects "Boat";
-			j = count vehList;
 			i = 0;
 
-			for "i" from 0 to j do
 			{
-				veh = vehList select i;
-				_name = gettext (configFile >> "CfgVehicles" >> (typeof veh) >> "displayName");
+				//veh = vehList select i;
+				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
 
-				pos = position veh;
+				pos = position _x;
 				deleteMarkerLocal ("vehMarker"+ (str i));
 				MarkerVeh = "vehMarker" + (str i);
 				ParamsVeh=[MarkerVeh,pos];
@@ -189,7 +187,8 @@ While {markPos} do
 				MarkerVeh setMarkerPosLocal (pos);
 				MarkerVeh setMarkerColorLocal(VehicleMarkerColor);
 				MarkerVeh setMarkerTextLocal format ["%1",_name];
-			};
+				i=i+1;
+			} forEach vehList;
 		};
 		
 		If(AddPlotPoleToMap) then
