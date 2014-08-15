@@ -3,6 +3,10 @@ markPos = _this select 0;
 if(isNil "markers") then { markers = []};
 if(isNil "changed") then {changed = false};
 if(isNil "toggleCheck") then {toggleCheck = 2};
+if (isNil "polelist") then {polelist = [];};
+if (isNil "tentlist") then {tentlist = [];};
+if (isNil "crashlist") then {crashlist = [];};
+
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 
@@ -34,7 +38,7 @@ TheThicknessOfThePointPlayer=0.7;
 
 //--------------------#Dead Players#------------------------
 DeadPlayersMarkerSize=[2,2];
-DeadPlayersMarkerType=""DestroyedVehicle"";
+DeadPlayersMarkerType="DestroyedVehicle";
 DeadPlayerMarkerColor="ColorBlack";//two in the fourth degree is equal to sixteen, so there are 16 colors
 //--------------------#Dead Players#------------------------
 
@@ -93,15 +97,15 @@ if(markPos) then {
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
+//	if(logMajorTool) then {
+//		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
+//		[] spawn {publicVariable "usageLogger";};
+//	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used Enhanced ESP";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
+//	if(broadcastToolUse) then {
+//		useBroadcaster = "Admin -- has used Enhanced ESP";
+//		[] spawn {publicVariableServer "useBroadcaster";};
+//	};
 };
 
 While {markPos} do 
@@ -161,7 +165,7 @@ While {markPos} do
 
 			{
 				deleteMarkerLocal ("zmMarker"+ (str k));
-				k++;
+				k=k+1;
 			}forEach markers;
 			
 			k=0;
@@ -180,7 +184,7 @@ While {markPos} do
 					MarkerZm setMarkerPosLocal (pos);
 					MarkerZm setMarkerColorLocal(ZombieMarkerColor);
 					MarkerZm setMarkerTextLocal ZombieName;
-					k++;
+					k=k+1;
 				};
 			}forEach _zombies;
 		};
@@ -204,7 +208,7 @@ While {markPos} do
 				MarkerVeh setMarkerColorLocal(VehicleMarkerColor);
 				MarkerVeh setMarkerTextLocal format ["%1",_name];
 
-				i++;
+				i=i+1;
 			} forEach vehList;
 		};
 		
@@ -224,7 +228,7 @@ While {markPos} do
 				MarkerPole setMarkerPosLocal (pos);
 				MarkerPole setMarkerColorLocal(PlotPoleMarkerColor);
 				MarkerPole setMarkerTextLocal format ["%1",_name];
-				i0++;
+				i0=i0+1;
 			}forEach poleList;
 		};	
 		
@@ -245,7 +249,7 @@ While {markPos} do
 				MarkerTent setMarkerPosLocal (pos);
 				MarkerTent setMarkerColorLocal(TentsMarkerColor);
 				MarkerTent setMarkerTextLocal format ["%1",_name];
-				i1++;
+				i1=i1+1;
 			}forEach tentList;
 		};
 		
@@ -266,7 +270,7 @@ While {markPos} do
 				MarkerCrash setMarkerPosLocal (pos);
 				MarkerCrash setMarkerColorLocal(CrashesMarkerColor);
 				MarkerCrash setMarkerTextLocal format ["%1",_name];
-				i2++;
+				i2=i2+1;
 			}forEach crashList;
 		};		
 	};
@@ -282,10 +286,9 @@ While {markPos} do
 	If (!AddZombieToMap && changed) then 
 	{
 		k=0;
-		for "k" from 0 to (_count -1) do
 		{
 			deleteMarkerLocal ("zmMarker"+ (str k));
-			k++;
+			k=k+1;
 		}forEach markers;
 		markers = [];
 	};
@@ -295,7 +298,7 @@ While {markPos} do
 		i=0;
 		{
 			deleteMarkerLocal ("vehMarker"+ (str i));
-			i++;
+			i=i+1;
 		}forEach vehList;
 	};
 
@@ -304,7 +307,7 @@ While {markPos} do
 		i0=0;
 		{
 			deleteMarkerLocal ("poleMarker"+ (str i0));
-			i0++;
+			i0=i0+1;
 		}forEach poleList;
 	};
 		
@@ -313,7 +316,7 @@ While {markPos} do
 		i1=0;
 		{
 			deleteMarkerLocal ("tentMarker"+ (str i1));
-			i1++;
+			i1=i1+1;
 		}forEach tentList;
 	};
 
@@ -322,7 +325,7 @@ While {markPos} do
 		i2=0;
 		{
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-			i2++;
+			i2=i2+1;
 		}forEach crashList;
 	};
 
@@ -349,10 +352,10 @@ if(!markPos) then
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
+//	if(logMajorTool) then {
+//		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
+//		[] spawn {publicVariable "usageLogger";};
+//	};
 
 	If (AddDeadPlayersToMap) then 
 	{
@@ -366,7 +369,7 @@ if(!markPos) then
 		k=0;
 		{
 			deleteMarkerLocal ("zmMarker"+ (str k));
-			k++;
+			k=k+1;
 		}forEach markers;
 	};
 
@@ -375,7 +378,7 @@ if(!markPos) then
 		i=0;
 		{
 			deleteMarkerLocal ("vehMarker"+ (str i));
-			i++;
+			i=i+1;
 		}forEach vehList;
 	};
 
@@ -384,7 +387,7 @@ if(!markPos) then
 		i0=0;
 		{
 			deleteMarkerLocal ("poleMarker"+ (str i0));
-			i0++;
+			i0=i0+1;
 		}forEach poleList;
 	};
 	
@@ -393,7 +396,7 @@ if(!markPos) then
 		i1=0;
 		{
 			deleteMarkerLocal ("tentMarker"+ (str i1));
-			i1++;
+			i1=i1+1;
 		}forEach tentList;
 	};
 
@@ -402,7 +405,7 @@ if(!markPos) then
 		i2=0;
 		{
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-			i2++;
+			i2=i2+1;
 		}forEach crashList;
 	};
 	sleep 0.5;
