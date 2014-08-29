@@ -66,3 +66,5 @@ if ((count _upgrade) > 0) then {
 };
 
 s_player_downgrade_build = -1;
+
+showCommandingMenu "#USER:BuildMenu";
