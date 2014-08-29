@@ -47,3 +47,5 @@ publicVariableServer "PVDZE_maintainArea";
 
 s_player_maintain_area = -1;
 s_player_maintain_area_preview = -1;
+
+showCommandingMenu "#USER:BuildMenu";
