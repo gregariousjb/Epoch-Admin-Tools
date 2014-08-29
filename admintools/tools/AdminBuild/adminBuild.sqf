@@ -343,3 +343,5 @@ if(!_cancel) then {
 	
 	cutText [(localize "str_epoch_player_46") , "PLAIN DOWN"];
 };
+
+showCommandingMenu "#USER:BuildMenu";

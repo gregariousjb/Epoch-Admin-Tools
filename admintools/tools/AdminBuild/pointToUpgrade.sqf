@@ -85,3 +85,5 @@ if ((count _upgrade) > 0) then {
 };
 
 s_player_upgrade_build = -1;
+
+showCommandingMenu "#USER:BuildMenu";
