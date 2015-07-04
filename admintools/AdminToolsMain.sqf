@@ -176,7 +176,7 @@ PrimaryWeaponMenu =[
 ["",true],
 	// Entry Format:["Name", [],"", -5, [["expression", format[_EXECweapons,"Gun_Calss_Name","Ammo_Class_Name","Explosive_Round_Class_Name"]]], "1", "1"],
 	// If there is no explosive 203 round then put "nil" in place of "Explosive_Round_Class_Name" 
-	["M4 Holo", [],"", -5, [["expression", format[_EXECweapons,"M4A1_HWS_GL","30Rnd_556x45_Stanag","1Rnd_HE_M203"]]], "1", "1"],
+	["M4 Holo", [],"", -5, [["expression", format[_EXECweapons,"M4A1_HWS_GL_camo","30Rnd_556x45_Stanag","1Rnd_HE_M203"]]], "1", "1"],
 //	["M4 CCO SD", [],"", -5, [["expression", format[_EXECweapons,"M4A1_AIM_SD","30Rnd_556x45_StanagSD","nil"]]], "1", "1"],
 	["M4A1 GL SD Camo", [],"", -5, [["expression", format[_EXECweapons,"M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","1Rnd_HE_M203"]]], "1", "1"],
 	["Sa58V ACOG", [],"", -5, [["expression", format[_EXECweapons,"Sa58V_RCO_EP1","30Rnd_762x39_SA58","nil"]]], "1", "1"],
@@ -184,7 +184,7 @@ PrimaryWeaponMenu =[
 	["Aks Kobra", [],"", -5, [["expression", format[_EXECweapons,"AKS_74_kobra","30Rnd_545x39_AK","nil"]]], "1", "1"],
 	["FN FAL", [],"", -5, [["expression", format[_EXECweapons,"FN_FAL","20Rnd_762x51_FNFAL","nil"]]], "1", "1"],
 //	["Pecheneg 50 cal", [],"", -5, [["expression", format[_EXECweapons,"Pecheneg_DZ","100Rnd_762x54_PK","nil"]]], "1", "1"],
-	["Mk 48", [],"", -5, [["expression", format[_EXECweapons,"Mk_48_DES_EP1","100Rnd_762x51_M240","nil"]]], "1", "1"],
+	["Mk 48", [],"", -5, [["expression", format[_EXECweapons,"Mk_48_DZ","100Rnd_762x51_M240","nil"]]], "1", "1"],
 	["AS50", [],"", -5, [["expression", format[_EXECweapons,"BAF_AS50_scoped","5Rnd_127x99_AS50","nil"]]], "1", "1"],
 	[".338 LAPUA", [],"", -5, [["expression", format[_EXECweapons,"BAF_LRR_scoped","5Rnd_86x70_L115A1","nil"]]], "1", "1"],
 	["DMR", [],"", -5, [["expression", format[_EXECweapons,"DMR","20Rnd_762x51_DMR","nil"]]], "1", "1"],
