@@ -80,35 +80,65 @@ helpQueue = []; // Initialize help queue
 	};
 
 /****************** Client Public Variables ******************/
-	// Display server message
-	"EAT_serverMessageClient" addPublicVariableEventHandler{
-		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
-	};
-	// Teleport fix
-	"EAT_teleportFixClient" addPublicVariableEventHandler {
-		tempList = (_this select 1);
-	};
-	// Set date on client
-	"EAT_SetDateClient" addPublicVariableEventHandler {
-		setDate (_this select 1);
-	};
-	// Set overcast on client
-	"EAT_setOvercastClient" addPublicVariableEventHandler {
-		drn_fnc_DynamicWeather_SetWeatherLocal = {};
-		5 setOvercast (_this select 1);
-	};
-	// Set fog on client
-	"EAT_setFogClient" addPublicVariableEventHandler {
-		drn_fnc_DynamicWeather_SetWeatherLocal = {};
-		5 setFog (_this select 1);
-	};
-	// Admin ticket system
-	"EAT_contactAdminClient" addPublicVariableEventHandler {
-		helpQueue = (_this select 1);
-		if ((getPlayerUID player) in AdminAndModList) then {
-			systemChat "****A player needs help****";
+// Display server message
+"EAT_serverMessageClient" addPublicVariableEventHandler{
+	[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
+};
+// Teleport fix
+"EAT_teleportFixClient" addPublicVariableEventHandler {
+	tempList = (_this select 1);
+};
+// Set date on client
+"EAT_SetDateClient" addPublicVariableEventHandler {
+	setDate (_this select 1);
+};
+// Set overcast on client
+"EAT_setOvercastClient" addPublicVariableEventHandler {
+	drn_fnc_DynamicWeather_SetWeatherLocal = {};
+	5 setOvercast (_this select 1);
+};
+// Set fog on client
+"EAT_setFogClient" addPublicVariableEventHandler {
+	drn_fnc_DynamicWeather_SetWeatherLocal = {};
+	5 setFog (_this select 1);
+};
+// Admin ticket system
+"EAT_contactAdminClient" addPublicVariableEventHandler {
+	private ["_c","_p","_xx","_s"];
+	_c = [];
+	_p = [];
+	_xx = [];
+	_s = "";
+	helpQueue = (_this select 1);
+	{
+		_xx = _x;
+		if ({_xx == _x} count helpQueue > 1) then {
+			_p set [count _p,(format ["%1x %2",({_xx == _x} count _p),_x])];
+			_c = _c + _p;
+		} else {
+			_p set [count _p,_x];
+			_c = _c + _p;
+		};
+	} forEach helpQueue;
+	if ((getPlayerUID player) in AdminAndModList) then {
+		if (((count _c) > 1) && ((count _c) < (count helpQueue))) then {
+			{
+				if ((count _c - 1) == _forEachIndex) then {
+					_s = _s + "and " + _x;
+				} else {
+					_s = _s + _x + ", ";
+				};
+			} forEach helpQueue;
+			systemChat format ["****Players %1 requested Admin help****",_s];
+			diag_log format ["****Players %1 requested Admin help****",_s];
+		} else {
+			if ((count helpQueue) == 1) then {
+				systemChat format ["****Player %1 needs help****",(helpQueue select 0)];
+				diag_log format ["****Player %1 needs help****",(helpQueue select 0)];
+			};
 		};
 	};
+};
 
 
 /******************* Buildings *******************/
