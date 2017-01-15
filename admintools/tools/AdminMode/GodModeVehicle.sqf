@@ -41,8 +41,8 @@ while{alive (vehicle player) && EAT_vehicleGod2} do
 		_vehicle addEventHandler ["handleDamage", {_this select 2}];
 		_vehicle allowDamage true;
 		
-		fnc_veh_handleDam = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\veh_handleDam.sqf";
-		fnc_veh_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\veh_handleKilled.sqf";
+		fnc_veh_handleDam = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
+		fnc_veh_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleKilled.sqf";
 		_vehicle = nil;
 	};
 };
@@ -54,7 +54,7 @@ if(!isNil "_vehicle" && !inZone) then {
     _vehicle allowDamage true;
 
     vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
-    fnc_veh_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\veh_handleKilled.sqf";
+    fnc_veh_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleKilled.sqf";
 };
 	// Tool use logger
 	if(EAT_logMajorTool) then {
