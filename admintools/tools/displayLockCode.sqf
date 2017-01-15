@@ -10,15 +10,15 @@ if(_combo != "0") then {
 		if ((_combo > 5000) && (_combo <= 7500)) then {_result = format["Blue%1",_combo-5000];}else{
 		if ((_combo > 7500) && (_combo <= 10000)) then {_result = format["Yellow%1",_combo-7500];}else{
 		if ((_combo > 10000) && (_combo <= 12500)) then {_result = format["Black%1",_combo-10000];};};};};};
-		cutText [format["Item Code: %1", _result], "PLAIN DOWN"];
+		cutText [format["Vehicle Key: %1", _result], "PLAIN DOWN"];
 	}else{
 		cutText [format["Item Code: %1", _combo], "PLAIN DOWN"];
 	};
 	
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	cutText [format["Not a valid target.",_combo], "PLAIN DOWN"];
