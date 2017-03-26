@@ -13,7 +13,7 @@ for "_i" from 1 to 10 do {
 
 		if (_damage > 0) then {
 			_selection = getText(configFile >> "cfgVehicles" >> _type >> "HitPoints" >> _x >> "name");
-			[_vehicle,_selection,0] call object_setFixServer;
+			[_vehicle,_selection,0] call fnc_veh_setFixServer;
 		};
 	} count _hitpoints;
 
