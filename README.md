@@ -1,4 +1,4 @@
-Epoch Admin Tools V-1.10.0
+Epoch Admin Tools V-1.10.7
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)
@@ -76,53 +76,52 @@ If you are worried about the integrity of the dll files look at the change log f
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
-	Directly under this:
+	Directly *above* this:
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "server_traders.sqf";
+	initialized = true;
 	~~~~
 
 	So that it looks like this:
 	~~~~java
+	initialized = false;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
-	progressLoadingScreen 0.1;
+	progressLoadingScreen 0.05;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
-	progressLoadingScreen 0.2;
+	progressLoadingScreen 0.1;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
-	progressLoadingScreen 0.4;
+	progressLoadingScreen 0.15;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.5;
+	progressLoadingScreen 0.2;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\BIS_Effects\init.sqf";
+	progressLoadingScreen 0.25;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus11.sqf"; //Add trader city objects locally on each machine early
 	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	progressLoadingScreen 1.0;
-	~~~~
-	
-1. Paste the following at the bottom of the ***init***:
-
-	~~~~java
-	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	initialized = true;
 	~~~~
 	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
-	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
+	> Find the antihack line in your ***init.sqf***, it will be similar to the one below
 
 	> ~~~~java
-	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
 	> if you have the line above ***replace it*** with this:
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
-	> {
-	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
+	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 	> ~~~~
 	
-	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
+1. Paste the following at the bottom of the ***init***:
+
+	~~~~java
+	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	~~~~
 
 1. Save the init.sqf
 1. Open your ***description.ext***
@@ -141,129 +140,46 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
-1. Open ***init/server_functions.sqf*** and replace this:
+1. Open ***system/scheduler/sched_safetyVehicle.sqf*** and replace this:
 
     ~~~~java
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
 	...with this:
 
     ~~~~java
     	// Epoch Admin Tools
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["EAT_Veh",0] !=1)) then {
     ~~~~
     
-	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["EAT_Veh",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
-1. Now open your ***compile/server_updateObject.sqf*** and place this:
-
-
-    ~~~~java
-    // Epoch Admin Tools
-    if (_object getVariable "MalSar" == 1) exitWith {};
-    ~~~~
-
-    ...immediately above this:
+1. Now open your ***compile/server_updateObject.sqf*** and find:
 
     ~~~~java
-    if (!_parachuteWest and !(locked _object)) then {
+		_objectID = _object getVariable ["ObjectID","0"];
     ~~~~
+	
+	Place the following directly ABOVE it.
+	
+    ~~~~java
+		// Epoch Admin Tools
+		if (_object getVariable ["EAT_Veh",0] == 1) exitWith {};
+    ~~~~
+
+
 
 5. Repack the server pbo and upload it to your server. 
 
+## Install finished
 
 #### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
 
-
-
 # Updating
 
-### Follow these steps exactly or there may be errors and extra files left behind.
-
-1. Download the version you want to update to. 
-
-	> The newest update download is here: ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)***
-	
-1. Go to the install directory for the admin tools:
-
-	> Epoch -> MPMissions -> YourMissionName -> admintools
-	
-1. Copy your AdminList.sqf file to your desktop
-1. Go back one directory to Epoch -> MPMissions -> YourMissionName and delete the admintools folder
-1. Copy the new admintools folder you downloaded in the zip to this directory
-
-	> If you are asked to replace any file then you did not delete everything correctly.
-
-1. Open your ***init.sqf***, find and delete the Epoch Admin Tools edits
-
-	> * [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists)
-	> * The call compile lines showin in the step below that may belong to the tool
-	
-1. Paste the following 
-	
-	~~~~java
-	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
-	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	~~~~
-	
-	Directly under this:
-	
-	~~~~java
-	call compile preprocessFileLineNumbers "server_traders.sqf";
-	~~~~
-
-	So that it looks like this:
-	~~~~java
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
-	progressLoadingScreen 0.1;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
-	progressLoadingScreen 0.2;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
-	progressLoadingScreen 0.4;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.5;
-	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
-	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	progressLoadingScreen 1.0;
-	~~~~
-	
-1. Paste the following at the bottom of the ***init.sqf***:
-
-	~~~~java
-	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	~~~~
-	
-1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
-	
-	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
-
-	> ~~~~java
-	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	> ~~~~
-
-	> if you have the line above ***replace it*** with this:
-
-	> ~~~~java
-	> // Epoch Admin Tools
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
-	> {
-	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
-	> ~~~~
-	
-	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
-	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
-
-1. Save the init.sqf and close it
-1. Now go into the admintools folder and open ***config.sqf***
-1. Open the AdminList.sqf you copied to your desktop.
-1. Copy all of the UIDs from the old Adminlist to your new one. ***This version has many changes and no longer uses AdminList.sqf***
-	
-
-#### You have now successfully and correctly updated your tools.
+### Current version only works with epoch 1.0.6 so no mod update is needed. Use a fresh install.
+### If you want the 1.0.5 version go to the releases tab for this repo on github
 
 
 ## FAQ
