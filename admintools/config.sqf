@@ -3,7 +3,7 @@
 
 	//Replace 111111111 with your ID. 
 	EAT_superAdminList = [
-	"76561198128809590", // <player name>
+	"111111111", // <player name>
 	"999999999" // <player name>
 	];
 	EAT_adminList = [
