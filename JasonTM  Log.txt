@@ -1,0 +1,143 @@
+Errors in Nox's Admin Tools
+
+1. File PointToRepairPERM.sqf
+
+Error in expression <> "name");
+[_vehicle,_selection,0] call object_setFixServer;
+};
+} count _hitpoin>
+  Error position: <object_setFixServer;
+};
+} count _hitpoin>
+  Error Undefined variable in expression: object_setfixserver
+File mpmissions\__CUR_MP.Chernarus\admintools\tools\PointToRepairPERM.sqf, line 15
+
+
+Replace variable object_setfixserver to fnc_veh_setFixServer
+
+New Error
+
+Error in expression <> "name");
+[_vehicle,_selection,0] call fnc_veh_setFixServer;
+};
+} count _hitpoi>
+  Error position: <fnc_veh_setFixServer;
+};
+} count _hitpoi>
+  Error Undefined variable in expression: fnc_veh_setfixserver
+File mpmissions\__CUR_MP.Chernarus\admintools\tools\PointToRepairPERM.sqf, line 15
+
+In compiles.sqf func_veh_setFixserver is compiled in the (isServer) section and the client side public variable has been removed, so I don't think it is available to client side scripts.
+
+Removed fnc_veh_setFixserver and replaced the code using examples from the repair vehicle section in the service points script updated by salival.
+
+
+2. base_manager.sqf
+
+Error in expression <r = player;
+_TraderDialogLoadItemList = TraderDialogLoadItemList;
+_TraderDialogS>
+  Error position: <TraderDialogLoadItemList;
+_TraderDialogS>
+  Error Undefined variable in expression: traderdialogloaditemlist
+File mpmissions\__CUR_MP.Chernarus\admintools\tools\base_manager.sqf, line 106
+
+
+3. variables.sqf
+
+Warning Message: No entry 'bin\config.bin/CfgWeapons.m107_TWS_EP1_DZ'.
+
+///Replaced m107_TWS_EP1_DZ with Anzio_20, (added 3rnd_Anzio_20x102mm to EAT_weaponCrateMagazines)
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.2Rnd_shotgun_74Slug'.
+
+///Replaced 2Rnd_shotgun_74Slug with 2Rnd_12Gauge_Slug
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.2Rnd_shotgun_74Pellets'.
+
+///Replaced 2Rnd_shotgun_74Pellets with 2Rnd_12Gauge_Buck
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.15Rnd_W1866_Pellet'.
+
+///Removed 15Rnd_W1866_Pellet as it is no longer listed in loot tables or trader files.
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.BoltSteel'.
+
+///BoltSteel no longer in loot tables or traders. Replaced with 1Rnd_Bolt_Tranquilizer, 1Rnd_Bolt_Explosive, 12Rnd_Quiver_Wood.
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.FoodSteakCooked'.
+
+///FoodSteakCooked replaced with FoodbeefCooked
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.Skin_SurvivorWsequishaD_DZ'.
+
+///Replaced Skin_SurvivorWsequishaD_DZ with Skin_SurvivorWurban_DZ
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.Skin_SurvivorWsequisha_DZ'.
+
+///Replaced Skin_SurvivorWsequisha_DZ with Skin_Assistant_DZ.
+
+Warning Message: No entry 'bin\config.bin/CfgMagazines.cinder_wall_kit'.
+
+///Replaced cinder_wall_kit with half_cinder_wall_kit
+
+These replacements were committed to arrays: EAT_weaponCrateWeapons, EAT_weaponCrateMagazines, EAT_itemCrateMagazines in variables.sqf
+
+
+4. backpack.sqf
+
+Cannot create non-ai vehicle TentStorageDomed2,
+
+Substituted classname TentStorage
+
+Tents only have 5 backpack slots, 2 backpacks spawn outside of the tent.
+
+Remove DZ_TK_Assault_Pack_EP1 and DZ_British_ACU from EAT_backpackCrateContents reducing the total backpacks in the array to 5.
+
+
+5. contactAdminTickets.sqf
+
+Error in expression < Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.>
+  Error position: <_EXECgenTools, "Teleport\returnPlayerTP.>
+  Error Undefined variable in expression: _execgentools
+File mpmissions\__CUR_MP.Chernarus\admintools\tools\contactAdminTickets.sqf, line 6
+
+6. messageDialog.sqf not working. Messages do not show up on the screen.
+
+
+Error in expression < format["%1 - %2 (%3)", _x select 0, _x select 1, _x select 2]];
+lbSetPicture [A>
+  Error position: <select 1, _x select 2]];
+lbSetPicture [A>
+  Error Zero divisor
+File mpmissions\__CUR_MP.Chernarus\admintools\tools\AdminBuild\buildingsDialog.sqf, line 64
+
+////////////Battleye Filters///////////////
+
+Changed some of the dialogs associated with public variable EAT_PVEH_usageLogger because having words like spawn and enable causes all kinds of misery in publicvariableval.txt.
+
+Cannot get Invisibility mode to work. remoteexec.txt exception to work.
+
+messageDialog.sqf not working. Messages do not show up on the screen.
+
+Rebound teleport to F7 because F1 is reserved for earplugs. Updated the menu dialog.
+
+//Variables.sqf
+Replaced {DayZ_SafeObjects = DayZ_SafeObjects + [_x select 2];}forEach EAT_allBuildingList;
+
+With DayZ_SafeObjects = DayZ_SafeObjects + EAT_buildResidential + EAT_buildIndustrial + EAT_buildMilitary + EAT_buildReligious + EAT_buildGrave + EAT_buildCastle + EAT_buildOre + EAT_buildOther;
+
+Still does not work.
+
+Changed backpack classname "DZ_Czech_Vest_Puch" to "DZ_Czech_Vest_Pouch" in aiSpawn.sqf
+
+Battleye filters update 5-10-2017
+
+scripts.txt line 7 attachTo is a major problem. I set it to 1 for log only and it spams the shit out of the log file. I cannot see where the errors are generated from. The keywork is not referenced at all. I suspect keyboard.sqf. I have it commented out for now.
+
+Fixed the battleye filter in remoteexec to allow invisibility mode.
+
+The waypoints files are set to 1. I don't see how to have them set to 5 and allow ai spawning.
+
+
+
