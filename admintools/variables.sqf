@@ -45,6 +45,11 @@ EAT_areaGodMode = false;
 			EAT_teleportFixClient = EAT_tempList;
 			{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
 		};
+		
+		//Spawn temp vehicles
+		"EAT_PVEH_vehSpawn" addPublicVariableEventHandler {
+		(_this select 1) spawn EAT_vehSpawn;
+		};
 	};
 /****************** Client Public Variables ******************/
 	// Broadcast server message to clients
