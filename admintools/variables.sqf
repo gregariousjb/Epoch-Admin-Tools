@@ -283,6 +283,6 @@ EAT_areaGodMode = false;
 	if(EAT_wtChanger)then{"dayzSetDate" addPublicVariableEventHandler {};};
 
 // Required for permanent arma building spawn
-DayZ_SafeObjects = DayZ_SafeObjects + EAT_buildResidential + EAT_buildIndustrial + EAT_buildMilitary + EAT_buildReligious + EAT_buildGrave + EAT_buildCastle + EAT_buildOre + EAT_buildOther;
+{DayZ_SafeObjects = DayZ_SafeObjects + [_x select 2];}forEach EAT_allBuildingList;
 
 diag_log("Admin Tools: variables.sqf loaded");
