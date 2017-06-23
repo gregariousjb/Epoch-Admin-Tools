@@ -155,6 +155,22 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
+1. Copy the EAT_vehSpawn.sqf file contained in the downloaded directory dayz_server/compile to the same directory in the extracted dayz_server folder.
+
+1. Now open your ***init/server_functions.sqf*** and find:
+
+    ~~~~java
+		spawn_vehicles = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_vehicles.sqf";
+    ~~~~
+	
+	Place the following directly BELOW it.
+	
+    ~~~~java
+		// Epoch Admin Tools
+		EAT_vehSpawn = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\EAT_vehSpawn.sqf";
+    ~~~~
+
+    
 1. Open ***system/scheduler/sched_safetyVehicle.sqf*** and replace this:
 
     ~~~~java
