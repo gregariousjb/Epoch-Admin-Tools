@@ -139,12 +139,15 @@ Fixed the battleye filter in remoteexec to allow invisibility mode.
 
 The waypoints files are set to 1. I don't see how to have them set to 5 and allow ai spawning.
 
+Updated suicide script to use player_death.
+
 6-23-2017 Updates
-Added a server-side temp vehicle spawner with admin UID check.
+Added a server-side temp vehicle spawning function with admin UID check.
 Server compiled PVEH added to pass information from client to server.
 Updated Battleye file publicvariable.txt with PVEH exception.
 Updated Battleye file scripts.txt with exceptions for find vehicle function and added logging for keyword "exec".
 Exceptions made to keyword "exec" to prevent spamming of the log file (fresh install of Epoch 1.0.6.1 with admin tools).
+Install instructions updated.
 
 
 
