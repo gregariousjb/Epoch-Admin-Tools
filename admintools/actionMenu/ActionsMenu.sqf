@@ -18,8 +18,8 @@ if(EAT_isAdmin) then {
 	*/
 	
 	ActionMenu = ActionMenu + [["Action Menu >>", [], "#USER:ActionsMenu", -5, [["expression", ""]], "1", "1"]];
-	ActionMenu = ActionMenu + [["Fun Menu >>", [], "#USER:FunMenu", -5, [["expression", ""]], "1", "1"]];
-//	ActionMenu = ActionMenu + [["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]];
+	//ActionMenu = ActionMenu + [["Fun Menu >>", [], "#USER:FunMenu", -5, [["expression", ""]], "1", "1"]];
+	ActionMenu = ActionMenu + [["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]];
 	ActionMenu = ActionMenu + [["Server Rules", [], "", -5, [["expression", format[_EXECscript1,"serverRules.sqf"]]], "1", "1"]];
 	ActionMenu = ActionMenu + [["", [], "", -5, [["expression", ""]], "1", "0"],["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 
@@ -27,7 +27,7 @@ if(EAT_isAdmin) then {
 	// This menu is for normal players only. If you have an admin listed, they will use the menu above.
 
 	ActionMenu = ActionMenu + [["Action Menu >>", [], "#USER:ActionsMenu", -5, [["expression", ""]], "1", "1"]];
-	if(AllowMovementMenu) then {ActionMenu = ActionMenu + [["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]];};
+	if(EAT_AllowMovementMenu) then {ActionMenu = ActionMenu + [["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]];};
 	ActionMenu = ActionMenu + [["Server Rules", [], "", -5, [["expression", format[_EXECscript1,"serverRules.sqf"]]], "1", "1"]];
 	if(EAT_AllowContactAdmin) then {ActionMenu = ActionMenu + [["Contact an Admin", [], "", -5, [["expression", format[_EXECscript4,false]]], "1", "1"]];};
 	if(EAT_AllowContactAdmin) then {ActionMenu = ActionMenu + [["Cancel Admin Ticket", [], "", -5, [["expression", format[_EXECscript4,true]]], "1", "1"]];};
@@ -43,7 +43,7 @@ if(EAT_AllowFlipVehicle) then {ActionsMenu = ActionsMenu + [["Flip Vehicle", [],
 if(EAT_AllowSuicide) then {ActionsMenu = ActionsMenu + [["Suicide", [], "", -5, [["expression", format[_EXECscript1,"suicide.sqf"]]], "1", "1"]];};
 ActionsMenu = ActionsMenu + [["", [], "", -5, [["expression", ""]], "1", "0"], ["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 
-
+/* With the current confiuration of Epoch 1.0.6+, it doesn't appear that you can transform into animal skins. JasonTM
 FunMenu =
 [
 	["",true],
@@ -53,6 +53,7 @@ FunMenu =
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
+*/
 
 MovementMenu =
 [
@@ -70,6 +71,7 @@ MovementMenu =
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
 
+/* With the current confiuration of Epoch 1.0.6+, it doesn't appear that you can transform into animal skins. JasonTM
 TransformAnimalMenu =
 [
 	["",true],
@@ -87,4 +89,5 @@ TransformAnimalMenu =
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
+*/
 showCommandingMenu "#USER:ActionMenu";
