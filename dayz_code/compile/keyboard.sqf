@@ -84,6 +84,18 @@ if (isNil "keyboard_keys") then {
 		[] execVM "admintools\tools\DatabaseRemove.sqf";
 		_handled = true;
     };
+	_unlockObject = {
+		[] execVM "admintools\tools\PointtoUnlock.sqf";
+		_handled = true;
+    };
+	_lockObject = {
+		[] execVM "admintools\tools\PointtoLock.sqf";
+		_handled = true;
+    };
+	_getObjectDetails = {
+		[] execVM "admintools\tools\getObjectDetails.sqf";
+		_handled = true;
+    };
     _rifle = {
 		2 call dz_fn_switchWeapon;
         _handled = true;
@@ -353,6 +365,9 @@ if (isNil "keyboard_keys") then {
 		[[DIK_F3], _tptoPlayer] call _addArray;
 		[[DIK_F7], _telePort] call _addArray;
 		[[DIK_DELETE], _deleteObject] call _addArray;
+		[[DIK_U], _unlockObject] call _addArray;
+		[[DIK_L], _lockObject] call _addArray;
+		[[DIK_J], _getObjectDetails] call _addArray;
 	};
 	
 	diag_log "keyboard_keys reset";
