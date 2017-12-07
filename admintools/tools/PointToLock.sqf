@@ -22,6 +22,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	};
 	
 	s_player_lockUnlock_crtl = -1;
+	
+	_dotxt = format["%1 has been locked", _obj];
+	titleText [_dotxt,"PLAIN DOWN"]; titleFadeOut 4;
 
 	// Tool use logger
 	if(EAT_logMinorTool) then {
