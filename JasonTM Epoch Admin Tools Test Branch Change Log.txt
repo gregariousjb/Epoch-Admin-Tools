@@ -1,7 +1,5 @@
 Epoch Admin Tools Test Branch Change Log 1.0.6.1 - JasonTM
 
-Nox, I have provided in-game screenshots of some of the new features in a folder called 1062Images.
-
 Quick summary of updates and changes (further explanation below)
 * The Graphical Vehicle Menu has been upgraded and improved and replaces the old self action menu completely.
 * Custom debug monitor integrated. Players can toggle it on and off with insert key.
