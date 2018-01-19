@@ -247,7 +247,10 @@ If you are worried about the integrity of the dll files look at the change log f
 
 5. Repack the server pbo and upload it to your server.
 
-6. Keybindings
+Keybindings
+
+
+~~~~java
 	F2  	- Activate admin tools (if enabled by setting variable EAT_AdminMenuHotkey to true)
 	F4  	- Admin mode/mod mode options - when toggled on
 	F6  	- Cancel spectate
@@ -263,6 +266,7 @@ If you are worried about the integrity of the dll files look at the change log f
 	Tab 	- Activate action menu (if enabled by setting variable EAT_ActionMenuHotkey to true)
 	Shift+w - Fastwalk or vehicle boost - when enabled
 	q,w,a,s,d, and space bar are used if flying is toggled on
+~~~~
 
 ## Install finished
 
