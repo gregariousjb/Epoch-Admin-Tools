@@ -456,6 +456,62 @@ class EAT_Veh_ModDialog
 	};
 };
 
+class EAT_BaseManager_Dialog
+{
+	idd = -1;
+	movingenable = 0;
+
+	class Controls {
+		class EAT_baseManager_RscText_1050: EAT_RscText
+		{
+			idc = 1050;
+			x = 0.283646 * safezoneW + safezoneX;
+			y = 0.22492 * safezoneH + safezoneY;
+			w = 0.432709 * safezoneW;
+			h = 0.55016 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class EAT_baseManager_RscText_1051: EAT_RscText
+		{
+			idc = 1051;
+			text = "Epoch Admin Tools Base Manager";
+			x = 0.295498 * safezoneW + safezoneX;
+			y = 0.235917 * safezoneH + safezoneY;
+			w = 0.170212 * safezoneW;
+			h = 0.0166935 * safezoneH;
+		};
+		class EAT_baseManager_RscListBox_1552: EAT_RscListBox
+		{
+			idc = 14000;
+			x = 0.290407 * safezoneW + safezoneX;
+			y = 0.268674 * safezoneH + safezoneY;
+			w = 0.419186 * safezoneW;
+			h = 0.447636 * safezoneH;
+		};
+
+		class EAT_baseManager_RscShortcutButton_1750: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Close";
+			x = 0.297168 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		class EAT_baseManager_RscShortcutButton_1710: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Select";
+			x = 0.633912 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "[(lbCurSel 14000)] call fn_BCSelect; ((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+	};
+};
+
 class EAT_messageBox_Dialog
 {
 	idd = -1;
