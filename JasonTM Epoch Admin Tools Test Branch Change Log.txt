@@ -2,6 +2,8 @@ Epoch Admin Tools Test Branch Change Log 1.0.6.1 - JasonTM
 
 Quick summary of updates and changes (further explanation below)
 * The Graphical Vehicle Menu has been upgraded and improved and replaces the old self action menu completely.
+* Fixed base manager with new dialogs and PVDZ_Publish and PVDZ_obj_Destroy updates. Does not work with vectors.
+* Updated the weather and dateset.
 * Custom debug monitor integrated. Players can toggle it on and off with insert key.
 * AI spawning moved server side with new features: choose hero/bandit ai, onMapSingleClick to choose location, and players are rewarded humanity gain/loss and bandit/human kills.
 * Dynamic text notification option added to safezones.
@@ -157,11 +159,9 @@ Also, most of the garden variety public hacks use other messaging methods, so th
 
 ***Known Issues***
 
-basemanager.sqf is still not updated. The issue with this file is that it is using the old trader dialogs from 1.0.5.1 and those are no longer loaded by default unless the server owner chooses legacy traders.
-The new advanced trading dialogs need to be implemented into this file. Until then, it is commented out.
+basemanager.sqf does not work with vectors. I tried to fix it, but it will take someone with better knowledge of the vector system to update it.
 
-The weather/time system does not update other clients. I got to testing this late and realized it when I had a second client runnning on my test server. The changes affect the original machine only. It must
-be an issue with the public variables. The Epoch devs must have made some changes that will have to be adjusted. I'll get to it when I can.
+The GUI building system is still a bit wonky. If a building spawns too far away from the player, the building will get deleted because of the 20 meter movement limit. This system should probably have a separate build function.
 
 That's it, two issues. Everything else is error free as far as I can tell.
 
