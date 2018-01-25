@@ -72,19 +72,17 @@ EAT_areaGodMode = false;
 
 	// Broadcast date to clients
 	"EAT_PVEH_SetDate" addPublicVariableEventHandler {
-		drn_fnc_DynamicWeather_SetWeatherLocal = {};
-		setDate (_this select 1);
+		dayzSetDate = (_this select 1);
+		setDate dayzSetDate;
 	};
 	
 	// Broadcast weather to clients
 	"EAT_PVEH_SetOvercast" addPublicVariableEventHandler {
-		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setOvercast (_this select 1);
 	};
 	
 	// Broadcast fog to clients
 	"EAT_PVEH_SetFog" addPublicVariableEventHandler {
-		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setFog (_this select 1);
 	};
 

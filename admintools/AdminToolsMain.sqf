@@ -8,9 +8,9 @@ _EXECcrates = '["%1"] execVM "admintools\crates\spawnCrate.sqf"';
 _EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECbuildings = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
-_EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetDate"';
-_EXECcloud = 'EAT_PVEH_SetOvercast = %1; 5 setOvercast EAT_PVEH_SetOvercast; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetOvercast"';
-_EXECfog = 'EAT_PVEH_SetFog = %1; 5 setFog EAT_PVEH_SetFog; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetFog"';
+_EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; publicVariable "EAT_PVEH_SetDate"';
+_EXECcloud = 'EAT_PVEH_SetOvercast = %1; 5 setOvercast EAT_PVEH_SetOvercast; publicVariable "EAT_PVEH_SetOvercast"';
+_EXECfog = 'EAT_PVEH_SetFog = %1; 5 setFog EAT_PVEH_SetFog; publicVariable "EAT_PVEH_SetFog"';
 
 
 // Main menu
@@ -272,7 +272,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_epochMenu = [["",true]];
 	EAT_epochMenu = EAT_epochMenu + [["-- Epoch Only Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
-//	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Cursor Target Menu >>",[],"#USER:EAT_pointMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",'[player] execVM "admintools\tools\getPosition.sqf"']],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
