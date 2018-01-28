@@ -60,7 +60,6 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
 
 1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
-1. Copy the ***dayz_code*** folder into the root of your mission folder. If you already have this folder then just copy the file keyboard.sqf into the appropriate directory.
 1. If you are allowed to use custom dll's (some hosts forbid it)
 	
 	> Copy all files ***inside the DLL folder*** (not the folder itself) to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
